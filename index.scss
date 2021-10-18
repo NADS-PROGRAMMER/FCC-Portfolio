@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+$welcomeBgColor: #171717;
+$mainTitleColor: #b33f40;
+$subtitleColor: #fdfbf9;
+$navbarColor: #1a1919;
+@mixin flex($flex-direct, $just-content, $al-items) {
+  display: flex;
+  flex-direction: $flex-direct;
+  justify-content: $just-content;
+  align-items: $al-items;
+}
+
+body,
+html {
+  overflow-x: hidden;
+}
+
+main {
+  @include flex(column, none, center);
+}
+
+#navbar {
+  @include flex(column, none, center);
+  background: $navbarColor;
+  padding: 1rem;
+  h1 {
+    font-size: 1.2rem;
+    color: $subtitleColor;
+  }
+
+  ul {
+    @include flex(column, none, center);
+    list-style-type: none;
+
+    li {
+      a {
+        text-decoration: none;
+        color: #ccc;
+      }
+    }
+  }
+}
+
+#welcome-section {
+  @include flex(column, none, center);
+  background: $welcomeBgColor;
+  width: 100vw;
+  padding: 1rem;
+
+  .title-section {
+    margin: 1.5rem 0;
+    @include flex(column, none, center);
+
+    h1 {
+      font-size: 2rem;
+      color: $mainTitleColor;
+    }
+    h3 {
+      color: $subtitleColor;
+    }
+  }
+  .cta-section {
+    button {
+      font-size: 1rem;
+      padding: 0.5rem;
+      background: $navbarColor;
+      color: $subtitleColor;
+      border: none;
+      outline: 1px solid $subtitleColor;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    button:hover {
+      box-shadow: 0px 0px 15px $subtitleColor;
+    }
+  }
+}
+
+#projects {
+  @include flex(column, none, center);
+  background: #1a1919;
+  padding: 2rem;
+  .title-section {
+    h1 {
+      color: $subtitleColor;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      color: #b33f40;
+    }
+  }
+  // END OF TITLE SECTION
+
+  .project-content {
+    @include flex(row, center, none);
+    width: 100%;
+    flex-wrap: wrap;
+
+    .project-tile {
+      @include flex(column, none, none);
+      width: 100%;
+      padding: 1rem;
+      flex: 0 1 30rem;
+
+      #image-section {
+        position: relative;
+        background: black;
+        width: 100%;
+        cursor: pointer;
+        margin: 0.5rem 0;
+
+        img {
+          display: block;
+          width: 100%;
+          box-shadow: 0px 0px 10px rgb(218, 218, 218);
+        }
+
+        h1 {
+          position: absolute;
+          top: 60%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 1.5em;
+          color: $mainTitleColor;
+          text-align: center;
+          visibility: hidden;
+          transition: all 200ms;
+        }
+        transition: all 300ms;
+      }
+
+      #image-section:hover img {
+        filter: grayscale(100%);
+        transform: scale(1.01);
+      }
+
+      #image-section:hover h1 {
+        visibility: visible;
+        top: 50%;
+      }
+
+      #project-details {
+        @include flex(column, none, none);
+        align-self: flex-start;
+
+        .project-title {
+          margin: 0rem 0 0.1rem 0;
+          h3 {
+            color: $subtitleColor;
+          }
+        }
+
+        .technology-used {
+          margin: 0.1rem 0;
+          span {
+            color: $mainTitleColor;
+            font-weight: bold;
+          }
+        }
+
+        .project-link {
+          a {
+            display: block;
+            text-align: center;
+            background: $welcomeBgColor;
+            padding: 0.5rem;
+            color: $subtitleColor;
+            border: none;
+            outline: 1px solid $subtitleColor;
+            width: 5rem;
+            text-decoration: none;
+            transition: all 300ms;
+          }
+          a:hover {
+            box-shadow: 0px 0px 15px $subtitleColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+#contacts {
+  @include flex(column, none, center);
+  background: $welcomeBgColor;
+  width: 100%;
+  padding: 2rem;
+
+  .title-section {
+    margin: 0.5rem 0;
+    h1 {
+      color: $subtitleColor;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      color: #b33f40;
+      text-align: center;
+    }
+  }
+
+  .accounts {
+    @include flex(row, center, none);
+    width: 100%;
+    img {
+      filter: invert(100%);
+      display: block;
+      width: 3rem;
+      margin: 0 0.3rem;
+      transition: all 300ms;
+    }
+
+    a:hover img {
+      transform: scale(1.1);
+    }
+  }
+
+  .quote {
+    margin: 0.5rem 0;
+    blockquote {
+      text-align: center;
+      color: $subtitleColor;
+    }
+  }
+
+  footer {
+    @include flex(column, none, center);
+    p {
+      color: $mainTitleColor;
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #navbar {
+    @include flex(row, space-around, none);
+    position: fixed;
+    width: 100vw;
+    ul {
+      @include flex(row, none, none);
+      li {
+        margin: 0 1rem;
+      }
+    }
+  }
+  #welcome-section {
+    @include flex(column, center, none);
+    height: 100vh;
+
+    .title-section {
+      h1 {
+        font-size: 3rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+      section {
+        button {
+          background: red;
+        }
+      }
+    }
+  }
+}
